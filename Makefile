@@ -1,5 +1,3 @@
-VERSION:="v9.37.0"
-
 .PHONY: download
 download:
 	@echo Cleaning up public
