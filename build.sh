@@ -7,3 +7,12 @@ for i in "${sources[@]}"
 do
   curl -s "$i"
 done
+
+# Now for more sources that need more processing
+sources=(https://raw.githubusercontent.com/ivolo/disposable-email-domains/master/index.json
+https://raw.githubusercontent.com/ivolo/disposable-email-domains/master/wildcard.json )
+
+for i in "${sources[@]}"
+do
+  curl -s "$i" | cut -d '"' -f 2 | sed 's/\[//g' | sed 's/\]//g' | sed '/^$/d'
+done
