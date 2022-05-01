@@ -8,3 +8,4 @@ download:
 
 	@echo Converting public/list.txt to required formats
 	@./buildJSON.sh > public/list.json
+	@./buildYAML.sh > public/list.yaml
