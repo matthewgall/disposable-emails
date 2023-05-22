@@ -22,5 +22,5 @@ https://raw.githubusercontent.com/ivolo/disposable-email-domains/master/wildcard
 
 for i in "${sources[@]}"
 do
-  curl -s "$i" | cut -d '"' -f 2 | sed 's/\[//g' | sed 's/\]//g' | sed '/^$/d'
+  curl -s "$i" | jq '.[]'
 done
