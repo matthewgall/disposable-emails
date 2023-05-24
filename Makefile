@@ -4,7 +4,7 @@ download:
 	@rm -rf public/list.txt public/list.json
 
 	@echo Downloading jq
-	@curl https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 -o jq
+	@curl https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 -s -o jq
 	@chmod +x jq
 
 	@echo Downloading data to public/list.txt
