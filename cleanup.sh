@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# First, we remove any domain in the Tranco 10k
-curl -Ls https://tranco-list.eu/download/X5XLN/10000 | cut -d ',' -f 2 | sort | uniq > /tmp/tranco.txt
+# First, we remove any domain in the Tranco 100k
+curl -Ls https://tranco-list.eu/download/X5XLN/100000 | cut -d ',' -f 2 | sort | uniq > /tmp/tranco.txt
 grep -Fvxf /tmp/tranco.txt public/list.txt > /tmp/list.txt
 mv /tmp/list.txt public/list.txt
 rm /tmp/tranco.txt
