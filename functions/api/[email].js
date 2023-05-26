@@ -15,7 +15,9 @@ export async function handle({ request, env }) {
 
     // Next, we get the domain, by splitting the e-mail
     let domain = email.split('@')[1];
+
     // Now, we see if the data is in our array and confirming if the domain is a throwaway
+    resp.isDisposable = false;
     if (Data.includes(domain)) {
         resp.isDisposable = true;
     }
