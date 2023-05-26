@@ -1,0 +1,21 @@
+{
+    "name": "throwaway.cloud",
+    "version": "2023.5.0",
+    "description": "a cloudflare worker for detecting throwaway e-mail domains",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "format": "prettier --write '**/*.{js,css,json,md}'"
+    },
+    "author": "Matthew Gall <me@matthewgall.dev>",
+    "license": "Apache-2.0",
+    "licenses": [
+        {
+        "type": "Apache-2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0"
+        }
+    ],
+    "dependencies": {
+        "validator": "^13.9.0"
+    }
+}
