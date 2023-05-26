@@ -1,4 +1,5 @@
 import isEmail from 'validator/lib/isEmail';
+import isFQDN from 'validator/lib/isFQDN';
 import Data from '../../public/list.json';
 
 export async function handle({ request, env }) {
@@ -15,6 +16,11 @@ export async function handle({ request, env }) {
 
     // Next, we get the domain, by splitting the e-mail
     let domain = email.split('@')[1];
+    if (!isFQDN(domain)) {
+        resp.success = false;
+        resp.message = `It does not appear that you provided a valid e-mail address to check`
+        return new Response(JSON.stringify(resp), {headers: {'Content-Type': 'application/json'}});
+    }
 
     // Now, we see if the data is in our array and confirming if the domain is a throwaway
     resp.isDisposable = false;
