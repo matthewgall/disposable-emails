@@ -11,7 +11,7 @@ export async function handle({ request, env }) {
     let domain = email.split('@')[1];
 
     // Now, we see if the data is in our array
-    if (domain.includes(Data)) {
+    if (Data.includes(domain)) {
         resp.isDisposable = true;
     
     }
