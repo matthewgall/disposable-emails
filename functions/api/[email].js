@@ -18,7 +18,7 @@ export async function handle({ request, env }) {
     if (!isEmail(email)) {
         resp.success = false;
         resp.message = `It does not appear that you provided a valid e-mail address to check`
-        return new Response(JSON.stringify(resp), {status, 400, headers: headers});
+        return new Response(JSON.stringify(resp), {status: 400, headers: headers});
     }
 
     // Next, we get the domain, by splitting the e-mail
