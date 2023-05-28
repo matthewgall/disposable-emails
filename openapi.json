@@ -1,0 +1,83 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "throwaway.cloud - OpenAPI 3.0",
+    "description": "Need to find out if an e-mail address is a throwaway (or disposable e-mail address)?  \nHere's our API!\n\nSome useful links:\n- [GitHub](https://github.com/matthewgall/disposable-domains)\n- [API Definition](https://github.commatthewgall/disposable-domains/blob/master/src/main/resources/openapi.yml)",
+    "contact": {
+      "email": "hello@throwaway.cloud"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://throwaway.cloud/api"
+    }
+  ],
+  "tags": [
+    {
+      "name": "email"
+    }
+  ],
+  "paths": {
+    "/{email}": {
+      "get": {
+        "tags": [
+          "email"
+        ],
+        "summary": "Search by e-mail",
+        "description": "Returns the throwaway status of an e-mail address",
+        "operationId": "getEmailById",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "E-mail address to lookup",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "E-mail address",
+              "example": "test@example.com"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful lookup",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Email"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid e-mail address supplied"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Email": {
+        "required": [
+          "email"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "isDisposable": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}
