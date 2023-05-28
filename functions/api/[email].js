@@ -35,7 +35,7 @@ export async function handle({ request, env }) {
         resp.isDisposable = true;
     }
 
-    return new Response(JSON.stringify(resp), {status: status, headers: headers});
+    return new Response(JSON.stringify(resp), {headers: headers});
 }
 
 export async function onRequest({ request, env }) {
