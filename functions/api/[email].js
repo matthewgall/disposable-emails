@@ -31,10 +31,8 @@ export async function handle({ request, env }) {
 
     // Now, we see if the data is in our array and confirming if the domain is a throwaway
     resp.isDisposable = false;
-    let status = 404;
     if (Data.includes(domain)) {
         resp.isDisposable = true;
-        status = 200;
     }
 
     return new Response(JSON.stringify(resp), {status: status, headers: headers});
