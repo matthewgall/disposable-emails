@@ -24,7 +24,7 @@ do
 done
 
 # And finally the manual blocklist
-echo "\n"
+printf "\n"
 while IFS="" read -r p || [ -n "$p" ]
 do
     echo $p
