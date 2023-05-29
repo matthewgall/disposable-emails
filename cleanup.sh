@@ -17,8 +17,8 @@ do
     rm /tmp/$id.txt
 done
 
-# And remove manually blocked domains
+# And remove manually allowed domains
 while IFS="" read -r p || [ -n "$p" ]
 do
     sed -i "/$p/d" public/list.txt
-done < blocklist.txt
+done < allowlist.txt
