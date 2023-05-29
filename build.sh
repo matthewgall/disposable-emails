@@ -22,3 +22,9 @@ for i in "${sources[@]}"
 do
   curl -s "$i" | ./jq -r '.[]'
 done
+
+# And finally the manual blocklist
+while IFS="" read -r p || [ -n "$p" ]
+do
+    echo $p
+done < blocklist.txt
