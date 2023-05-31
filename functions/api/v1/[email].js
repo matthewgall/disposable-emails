@@ -14,7 +14,7 @@ export async function handle({ request, env }) {
         'success': true
     }
 
-    let email = new URL(request.url).pathname.replace('/api/', '');
+    let email = new URL(request.url).pathname.replace('/api/v1', '');
     if (!isEmail(email)) {
         resp.success = false;
         resp.message = `It does not appear that you provided a valid e-mail address to check`
