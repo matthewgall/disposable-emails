@@ -13,6 +13,9 @@ download:
 	@echo Cleaning up data, and removing blocklisted domains
 	@./cleanup.sh
 
+	@echo Adding OpenAPI schema
+	@cp openapi.yml public/openapi.yml
+
 	@echo Converting public/list.txt to required formats
 	@./buildJSON.sh > public/list.json
 	@./buildYAML.sh > public/list.yaml
