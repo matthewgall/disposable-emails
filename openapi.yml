@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: throwaway.cloud - OpenAPI 3.0
+  title: throwaway.cloud
   description: |-
     Need to find out if an e-mail address is a throwaway (or disposable e-mail address)?  
     Here's our API!
@@ -15,7 +15,7 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   version: 1.0.0
 servers:
-  - url: https://throwaway.cloud/api
+  - url: https://throwaway.cloud/api/v1
 tags:
   - name: email
 paths:
