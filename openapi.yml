@@ -7,7 +7,7 @@ info:
     
     Some useful links:
     - [GitHub](https://github.com/matthewgall/disposable-domains)
-    - [API Definition](https://github.commatthewgall/disposable-domains/blob/master/src/main/resources/openapi.yml)
+    - [API Definition](https://github.com/matthewgall/disposable-emails/blob/main/openapi.yml)
   contact:
     email: hello@throwaway.cloud
   license:
