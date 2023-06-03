@@ -3,9 +3,6 @@
   "info": {
     "title": "throwaway.cloud",
     "description": "Need to find out if an e-mail address is a throwaway (or disposable e-mail address)?  \nHere's our API!\n\nSome useful links:\n- [GitHub](https://github.com/matthewgall/disposable-domains)\n- [API Definition](https://github.com/matthewgall/disposable-emails/blob/main/openapi.yml)",
-    "contact": {
-      "email": "hello@throwaway.cloud"
-    },
     "license": {
       "name": "Apache 2.0",
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
