@@ -7,7 +7,7 @@ mv /tmp/list.txt public/list.txt
 rm /tmp/tranco.txt
 
 # Now, we process some allowlists
-allowlists=(https://raw.githubusercontent.com/disposable/disposable/master/whitelist.txt)
+allowlists=(https://raw.githubusercontent.com/disposable/disposable/master/whitelist.txt https://raw.githubusercontent.com/disposable-email-domains/disposable-email-domains/master/allowlist.conf)
 for i in "${allowlists[@]}"
 do
     id=$(date +%s | sha256sum | base64 | head -c 12)
