@@ -17,12 +17,12 @@ export async function handle({ request, env }) {
     let email = new URL(request.url).pathname.replace('/api/v1', '').toLowerCase().trim();
     
     // Are they asking about a domain, or e-mail address?
-    if (isEmail(email) || isFQDN(email)) {
+    if (isEmail(email) == true || isFQDN(email) == true) {
         let domain = email;
         // If they asked about a specific e-mail, we need to grab the domain
-        if (isEmail(email)) {
+        if (isEmail(domain)) {
             // We do that by splitting on the @
-            domain = email.split('@')[1];
+            domain = domain.split('@')[1];
             // And now validating that the FQDN left is actually valid
             if (!isFQDN(domain)) {
                 resp.success = false;
