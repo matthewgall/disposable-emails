@@ -14,10 +14,9 @@ export async function handle({ request, env }) {
         'success': true
     }
 
-    let email = new URL(request.url).pathname.replace('/api/v1', '').toLowerCase();
-    if (!isEmail(email) && !isFQDN(email)) {
+    let email = new URL(request.url).pathname.replace('/api/v1', '').toLowerCase().trim();
+    if (isEmail(email) === false && isFQDN(email) === false) {
         resp.success = false;
-        resp.check = 1;
         resp.message = `It does not appear that you provided a valid e-mail address or domain name to check`
         return new Response(JSON.stringify(resp), {status: 400, headers: headers});
     }
