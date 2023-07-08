@@ -14,37 +14,33 @@ export async function handle({ request, env }) {
         'success': true
     }
 
-    let email = new URL(request.url).pathname.replace('/api/v1', '').toLowerCase().trim();
-    console.log(email);
-    
+    let email = new URL(request.url).pathname.replace('/api/v1/', '').toLowerCase().trim();
+
     // Are they asking about a domain, or e-mail address?
-    if (isEmail(email) == true || isFQDN(email) == true) {
-        let domain = email;
-        // If they asked about a specific e-mail, we need to grab the domain
-        if (isEmail(domain)) {
-            // We do that by splitting on the @
-            domain = domain.split('@')[1];
-            // And now validating that the FQDN left is actually valid
-            if (!isFQDN(domain)) {
-                resp.success = false;
-                resp.message = `It does not appear that you provided a valid e-mail address or domain name to check`
-                return new Response(JSON.stringify(resp), {status: 400, headers: headers});
-            }
-        }
-    
-        // Now, the fun bit, the check
-        // we see if the data is in our array and confirming if the domain is a throwaway
-        resp.isDisposable = false;
-        if (Data.includes(domain)) {
-            resp.isDisposable = true;
-        }
-    }
-    else {
-        // Turns out, they didn't ask for a domain or an e-mail address
+    if (!isEmail(email) && !isFQDN(email)) {
         resp.success = false;
-        resp.type = 1;
         resp.message = `It does not appear that you provided a valid e-mail address or domain name to check`
         return new Response(JSON.stringify(resp), {status: 400, headers: headers});
+    }
+
+    let domain = email;
+    // If they asked about a specific e-mail, we need to grab the domain
+    if (isEmail(domain)) {
+        // We do that by splitting on the @
+        domain = domain.split('@')[1];
+        // And now validating that the FQDN left is actually valid
+        if (!isFQDN(domain)) {
+            resp.success = false;
+            resp.message = `It does not appear that you provided a valid e-mail address or domain name to check`
+            return new Response(JSON.stringify(resp), {status: 400, headers: headers});
+        }
+    }
+    
+    // Now, the fun bit, the check
+    // we see if the data is in our array and confirming if the domain is a throwaway
+    resp.isDisposable = false;
+    if (Data.includes(domain)) {
+        resp.isDisposable = true;
     }
 
     return new Response(JSON.stringify(resp), {headers: headers});
