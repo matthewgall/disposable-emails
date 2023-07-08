@@ -15,7 +15,7 @@ export async function handle({ request, env }) {
     }
 
     let email = new URL(request.url).pathname.replace('/api/v1', '').toLowerCase().trim();
-    if (isEmail(email) === false && isFQDN(email) === false) {
+    if (!isEmail(email) && !isFQDN(email)) {
         resp.success = false;
         resp.message = `It does not appear that you provided a valid e-mail address or domain name to check`
         return new Response(JSON.stringify(resp), {status: 400, headers: headers});
@@ -23,15 +23,16 @@ export async function handle({ request, env }) {
 
     // Next, we get the domain, by splitting the e-mail (if it is one)
     let domain = email;
-    if (isEmail(email)) domain = email.split('@')[1];
+    if (isEmail(email)) {
+        domain = email.split('@')[1];
 
-    // Now validate the domain is valid
-    if (!isFQDN(domain)) {
-        resp.success = false;
-        resp.message = `It does not appear that you provided a valid e-mail address or domain name to check`
-        return new Response(JSON.stringify(resp), {status: 400, headers: headers});
+        if (!isFQDN(domain)) {
+            resp.success = false;
+            resp.message = `It does not appear that you provided a valid e-mail address or domain name to check`
+            return new Response(JSON.stringify(resp), {status: 400, headers: headers});
+        }
     }
-
+    
     // Now, we see if the data is in our array and confirming if the domain is a throwaway
     resp.isDisposable = false;
     if (Data.includes(domain)) {
