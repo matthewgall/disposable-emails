@@ -15,6 +15,7 @@ export async function handle({ request, env }) {
     }
 
     let email = new URL(request.url).pathname.replace('/api/v1', '').toLowerCase().trim();
+    console.log(email);
     
     // Are they asking about a domain, or e-mail address?
     if (isEmail(email) == true || isFQDN(email) == true) {
