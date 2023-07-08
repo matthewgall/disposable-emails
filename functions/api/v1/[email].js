@@ -41,6 +41,7 @@ export async function handle({ request, env }) {
     else {
         // Turns out, they didn't ask for a domain or an e-mail address
         resp.success = false;
+        resp.type = 1;
         resp.message = `It does not appear that you provided a valid e-mail address or domain name to check`
         return new Response(JSON.stringify(resp), {status: 400, headers: headers});
     }
