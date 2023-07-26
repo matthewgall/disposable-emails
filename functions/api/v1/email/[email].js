@@ -1,4 +1,5 @@
 import isEmail from 'validator/lib/isEmail';
+import isFQDN from 'validator/lib/isFQDN';
 import Data from '../../../../public/list.json';
 
 let headers = {
