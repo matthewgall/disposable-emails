@@ -14,17 +14,44 @@
       "url": "https://throwaway.cloud/api/v1"
     }
   ],
-  "tags": [
-    {
-      "name": "email"
-    }
-  ],
   "paths": {
-    "/{email}": {
+    "/domain/{domain}": {
       "get": {
-        "tags": [
-          "email"
+        "summary": "Search by domain name",
+        "description": "Returns the throwaway status of a domain name",
+        "operationId": "getDomainById",
+        "parameters": [
+          {
+            "name": "domain",
+            "in": "path",
+            "description": "Domain name to lookup",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Domain name",
+              "example": "example.com"
+            }
+          }
         ],
+        "responses": {
+          "200": {
+            "description": "Successful lookup",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Domain"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid domain name supplied"
+          }
+        }
+      }
+    },
+    "/email/{email}": {
+      "get": {
         "summary": "Search by e-mail",
         "description": "Returns the throwaway status of an e-mail address",
         "operationId": "getEmailById",
@@ -61,6 +88,20 @@
   },
   "components": {
     "schemas": {
+      "Domain": {
+        "required": [
+          "domain"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "isDisposable": {
+            "type": "boolean"
+          }
+        }
+      },
       "Email": {
         "required": [
           "email"
