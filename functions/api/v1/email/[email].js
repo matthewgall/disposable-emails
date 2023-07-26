@@ -1,6 +1,5 @@
 import isEmail from 'validator/lib/isEmail';
-import isFQDN from 'validator/lib/isFQDN';
-import Data from '../../../public/list.json';
+import Data from '../../../../public/list.json';
 
 let headers = {
     'Content-Type': 'application/json',
@@ -14,26 +13,22 @@ export async function handle({ request, env }) {
         'success': true
     }
 
-    let email = new URL(request.url).pathname.replace('/api/v1/', '').toLowerCase().trim();
+    let email = new URL(request.url).pathname.replace('/api/v1/email/', '').toLowerCase().trim();
 
-    // Are they asking about a domain, or e-mail address?
-    if (!isEmail(email) && !isFQDN(email)) {
+    // Are they asking about an e-mail address?
+    if (!isEmail(email)) {
         resp.success = false;
-        resp.message = `It does not appear that you provided a valid e-mail address or domain name to check`
+        resp.message = `It does not appear that you provided a valid e-mail address to check`
         return new Response(JSON.stringify(resp), {status: 400, headers: headers});
     }
 
-    let domain = email;
-    // If they asked about a specific e-mail, we need to grab the domain
-    if (isEmail(domain)) {
-        // We do that by splitting on the @
-        domain = domain.split('@')[1];
-        // And now validating that the FQDN left is actually valid
-        if (!isFQDN(domain)) {
-            resp.success = false;
-            resp.message = `It does not appear that you provided a valid e-mail address or domain name to check`
-            return new Response(JSON.stringify(resp), {status: 400, headers: headers});
-        }
+    // We do that by splitting on the @
+    let domain = email.split('@')[1];
+    // And now validating that the FQDN left is actually valid
+    if (!isFQDN(domain)) {
+        resp.success = false;
+        resp.message = `It does not appear that you provided a valid e-mail address to check`
+        return new Response(JSON.stringify(resp), {status: 400, headers: headers});
     }
     
     // Now, the fun bit, the check
