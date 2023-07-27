@@ -19,3 +19,6 @@ download:
 	@echo Converting public/list.txt to required formats
 	@./buildJSON.sh > public/list.json
 	@./buildYAML.sh > public/list.yaml
+
+	@echo Creating hashed versions for oblivious lookups
+	@./buildHash.sh public/list.txt > public/list.sha512
