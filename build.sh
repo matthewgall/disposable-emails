@@ -13,7 +13,7 @@ done
 sources=(https://raw.githubusercontent.com/MISP/misp-warninglists/main/lists/disposable-email/list.json)
 for i in "${sources[@]}"
 do
-  curl -s "$i" | $jq -r '.list[]'
+  curl -s "$i" | ./jq -r '.list[]'
 done
 
 # Now for more sources that need more processing
@@ -21,7 +21,7 @@ sources=(https://raw.githubusercontent.com/ivolo/disposable-email-domains/master
 
 for i in "${sources[@]}"
 do
-  curl -s "$i" | $jq -r '.[]'
+  curl -s "$i" | ./jq -r '.[]'
 done
 
 # And finally the manual blocklist
