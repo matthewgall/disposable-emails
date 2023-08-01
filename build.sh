@@ -1,13 +1,6 @@
 #!/bin/bash
 set -eu
 
-# First, find jq
-jq=$(which jq)
-if [ -z $jq ]
-then
-    jq="./jq"
-fi
-
 # Now into our sources
 sources=(https://raw.githubusercontent.com/disposable/disposable-email-domains/master/domains.txt https://raw.githubusercontent.com/disposable-email-domains/disposable-email-domains/master/disposable_email_blocklist.conf https://raw.githubusercontent.com/MattKetmo/EmailChecker/master/res/throwaway_domains.txt https://raw.githubusercontent.com/FGRibreau/mailchecker/master/list.txt https://www.stopforumspam.com/downloads/toxic_domains_whole.txt https://disify.com/blacklist/domains)
 
