@@ -1,3 +1,5 @@
+DATE := $(shell date +"%s")
+
 .PHONY: download
 download:
 	@echo Cleaning up public
@@ -21,4 +23,4 @@ download:
 	@./buildYAML.sh > public/list.yaml
 
 	@echo Updating version information
-	@echo "{\"version\":\"$(date +"%s")\", \"sha\": \"${CF_PAGES_COMMIT_SHA}\"}" > public/version.json 
+	@echo "{\"version\":\"${DATE}\", \"sha\": \"${CF_PAGES_COMMIT_SHA}\"}" > public/version.json 
