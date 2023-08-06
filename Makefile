@@ -23,4 +23,4 @@ download:
 	@./buildYAML.sh > public/list.yaml
 
 	@echo Updating version information
-	@echo "{\"version\":\"${DATE}\", \"sha\": \"${CF_PAGES_COMMIT_SHA}\"}" > public/version.json 
+	@echo "{\"updated\":\"${DATE}\", \"sha\": \"${CF_PAGES_COMMIT_SHA}\"}" > public/version.json 
