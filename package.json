@@ -1,6 +1,6 @@
 {
     "name": "throwaway.cloud",
-    "version": "2023.6.0",
+    "version": "2023.8.0",
     "description": "a cloudflare worker for detecting throwaway e-mail domains",
     "main": "index.js",
     "scripts": {
@@ -16,7 +16,7 @@
         }
     ],
     "dependencies": {
-        "validator": "^13.9.0"
+        "validator": "^13.11.0"
     },
     "devDependencies": {
         "swagger-cli": "^4.0.4"
